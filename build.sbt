@@ -9,8 +9,7 @@ ThisBuild / version      := "1.1-SNAPSHOT"
 //-----------------------------------------------------------------------------
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play-json" % "2.8.1",
-  "de.bwhc" %% "utils" % "1.0-SNAPSHOT"
+  "com.typesafe.play" %% "play-json" % "2.8.1"
 )
 
 //-----------------------------------------------------------------------------
