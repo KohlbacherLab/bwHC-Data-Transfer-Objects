@@ -569,7 +569,6 @@ package object gens
       meds  <- Gen.of[List[Medication.Coding]]
       prio  <- Gen.enum(TherapyRecommendation.Priority)
       loe   <- Gen.of[LevelOfEvidence]
-//      supportingVariantRefs <- Gen.subsets(ngsReport.variants).map(_.map(_.id))
       supportingVariantRefs <-
         Gen.subsets(
           ngsReport.simpleVariants.get ++ ngsReport.copyNumberVariants.get
@@ -704,65 +703,6 @@ package object gens
   implicit val genDosage: Gen[Dosage.Value] =
     Gen.enum(Dosage)
 
-/*
-  def genNotDoneTherapyFor(
-    rec: TherapyRecommendation
-  ): Gen[NotDoneTherapy] =
-    for {
-      id      <- Gen.of[TherapyId] 
-      patId   =  rec.patient
-      date    =  LocalDate.now
-      basedOn =  rec.id
-      reason  <- Gen.enum(MolecularTherapy.NotDoneReason).map(Coding(_,None))
-      note    =  "Notes on the Therapy..."
-    } yield NotDoneTherapy(id,patId,date,basedOn,reason,Some(note))
-
-
-  def genStoppedTherapyFor(
-    rec: TherapyRecommendation
-  ): Gen[StoppedTherapy] =
-    for {
-      id      <- Gen.of[TherapyId] 
-      patId   =  rec.patient
-      date    =  LocalDate.now
-      basedOn =  rec.id
-      period  =  ClosedPeriod(LocalDate.now,LocalDate.now)
-      meds    =  rec.medication
-      dosage  <- Gen.of[Dosage.Value]
-      reason  <- Gen.enum(MolecularTherapy.StopReason).map(Coding(_,None))
-      note    =  "Notes on the Therapy..."
-    } yield StoppedTherapy(id,patId,date,basedOn,period,meds,Some(dosage),reason,Some(note))
-
-
-  def genOngoingTherapyFor(
-    rec: TherapyRecommendation
-  ): Gen[OngoingTherapy] =
-    for {
-      id      <- Gen.of[TherapyId] 
-      patId   =  rec.patient
-      date    =  LocalDate.now
-      basedOn =  rec.id
-      period  =  OpenEndPeriod(LocalDate.now)
-      meds    =  rec.medication
-      dosage  <- Gen.of[Dosage.Value]
-      note    =  "Notes on the Therapy..."
-    } yield OngoingTherapy(id,patId,date,basedOn,period,meds,Some(dosage),Some(note))
-
-
-  def genCompletedTherapyFor(
-    rec: TherapyRecommendation
-  ): Gen[CompletedTherapy] =
-    for {
-      id      <- Gen.of[TherapyId] 
-      patId   =  rec.patient
-      date    =  LocalDate.now
-      basedOn =  rec.id
-      period  =  ClosedPeriod(LocalDate.now,LocalDate.now)
-      meds    =  rec.medication
-      dosage  <- Gen.of[Dosage.Value]
-      note    =  "Notes on the Therapy..."
-    } yield CompletedTherapy(id,patId,date,basedOn,period,meds,Some(dosage),Some(note))
-*/
 
   def genNotDoneTherapyFor(
     rec: TherapyRecommendation
@@ -856,19 +796,6 @@ package object gens
         Some("Notes on the Therapy...")
       )
 
-
-/*
-  def genMolecularTherapyDocFor(
-    rec: TherapyRecommendation
-  ): Gen[MolecularTherapyDocumentation] =
-    for {
-      notDone <- getNotDoneTherapyFor(rec)
-      ongoing <- getOngoingTherapyFor(rec)
-      stopped <- getStoppedTherapyFor(rec)
-      compl   <- getCompletedTherapyFor(rec)
-      seq     =  List(notDone,ongoing,stopped,compl)
-    } yield MolecularTherapyDocumentation(seq)
-*/
 
   def genMolecularTherapyDocFor(
     rec: TherapyRecommendation

@@ -60,7 +60,7 @@ object Patient
           } yield result
       ),
       Writes(
-        d => JsString(yyyyMM.format(d))
+        d => JsString(yyyyMMFormatter.format(d))
       )
     )
 
