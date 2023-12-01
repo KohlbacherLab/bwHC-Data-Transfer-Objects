@@ -16,6 +16,7 @@ object LevelOfEvidence
  
   object Grading extends Enumeration
   {
+    val Undefined = Value("N/A")
     val m1A,m1B,m1C,m2A,m2B,m2C,m3,m4 = Value
 
     implicit val format = Json.formatEnum(this)

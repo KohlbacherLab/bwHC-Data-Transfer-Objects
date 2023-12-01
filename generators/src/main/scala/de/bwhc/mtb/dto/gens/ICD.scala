@@ -41,7 +41,14 @@ object ICD
       "C26.9" -> "Bösartige Neubildung: Ungenau bezeichnete Lokalisationen des Verdauungssystems",
       "C30.0" -> "Bösartige Neubildung: Nasenhöhle"
     )
-    .map { case (c,d) => Coding[ICD10GM](ICD10GM(c),Some(d),Some(Year.now.toString)) }
+    .map {
+      case (c,d) =>
+        Coding[ICD10GM](
+          ICD10GM(c),
+          Some(d),
+          Some(Year.now.toString)
+        )
+    }
 
 
   lazy val icdO3TCodings =
@@ -83,8 +90,14 @@ object ICD
       "C26.8" -> "Verdauungssystem, mehrere Bereiche überlappend",
       "C26.9" -> "Gastrointestinaltrakt o.n.A."
     )
-    .map { case (c,d) => Coding[ICDO3T](ICDO3T(c),Some(d),Some("Zweite Revision")) }
-//    .map { case (c,d) => Coding[ICDO3T](ICDO3T(c),Some(d),Some("2014")) }
+    .map {
+      case (c,d) =>
+        Coding[ICDO3T](
+          ICDO3T(c),
+          Some(d),
+          Some("Zweite Revision")
+        )
+    }
 
 
   lazy val icdO3MCodings =
@@ -132,6 +145,13 @@ object ICD
       "8920/3" -> "Alveoläres Rhabdomyosarkom",
       "8921/3" -> "Rhabdomyosarkom mit ganglionärer Differenzierung"
     )
-    .map { case (c,d) => Coding[ICDO3M](ICDO3M(c),Some(d),Some("Zweite Revision")) }
+    .map {
+      case (c,d) =>
+        Coding[ICDO3M](
+          ICDO3M(c),
+          Some(d),
+          Some("Zweite Revision")
+        )
+    }
 
 }

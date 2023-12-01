@@ -554,7 +554,12 @@ package object gens
 
   implicit val genLOE: Gen[LevelOfEvidence] =
     for {
-      grade <- Gen.enum(LevelOfEvidence.Grading).map(Coding(_,None))
+      grade <-
+        Gen.oneOf(
+          (LevelOfEvidence.Grading.values - LevelOfEvidence.Grading.Undefined).toSeq
+        )
+        .map(Coding(_,None))
+//      grade <- Gen.enum(LevelOfEvidence.Grading).map(Coding(_,None))
       adds  <- Gen.subsets(LevelOfEvidence.Addendum.values.toSet)
     } yield LevelOfEvidence(grade,Some(adds.map(Coding(_,None))))
 
