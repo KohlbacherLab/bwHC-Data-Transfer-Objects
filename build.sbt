@@ -7,7 +7,7 @@
 name := "bwhc-mtb-data-transfer-objects"
 ThisBuild / organization := "de.bwhc"
 ThisBuild / scalaVersion := "2.13.8"
-ThisBuild / version      := "1.0-SNAPSHOT"
+ThisBuild / version      := "1.0"
 
 
 //-----------------------------------------------------------------------------
